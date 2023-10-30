@@ -1,18 +1,14 @@
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.depsmanagement.android.application)
+    alias(libs.plugins.depsmanagement.android.application.compose)
+    alias(libs.plugins.depsmanagement.android.hilt)
 }
 
 android {
     namespace = "com.example.depsmanagement"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.depsmanagement"
-        minSdk = 24
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -30,20 +26,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-        isCoreLibraryDesugaringEnabled = true
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
     }
     packaging {
         resources {
@@ -70,11 +52,6 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    kaptAndroidTest(libs.hilt.compiler)
-    kaptTest(libs.hilt.compiler)
-
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.navigation.compose)
 
@@ -86,6 +63,5 @@ dependencies {
     implementation(project(":feature:second:view"))
 
     implementation(project(":database"))
-
-    coreLibraryDesugaring(libs.android.desugar.jdk.libs)
+    implementation(project(":model"))
 }

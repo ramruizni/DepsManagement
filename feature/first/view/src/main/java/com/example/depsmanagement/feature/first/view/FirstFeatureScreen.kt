@@ -33,7 +33,7 @@ internal fun FirstFeatureScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround
     ) {
-        Text(text = "Feature A")
+        Text(text = "First Feature")
         Button(
             onClick = {
                 onNavigateToSecondFeatureClick()
